@@ -4,3 +4,5 @@ applications:
   path: target/mtls-sample-client-1.0.0.BUILD-SNAPSHOT.jar
   buildpacks:
   - https://github.com/cloudfoundry/java-buildpack.git
+  env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'
