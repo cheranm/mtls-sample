@@ -4,5 +4,15 @@ applications:
   path: target/mtls-sample-server-1.0.0.BUILD-SNAPSHOT.jar
   buildpacks:
   - https://github.com/cloudfoundry/java-buildpack.git
+  #- java_buildpack_offline_4_28
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'
+    SERVER_PORT: 8443
+    SERVER_HTTP_PORT: 8080
+    SERVER_SSL_CLIENT-AUTH: need
+    SERVER_SSL_KEY_STORE: '/home/vcap/keystore.keystore'
+    SERVER_SSL_KEY_STORE_PASSWORD: '123456'
+    SERVER_SSL_TRUST_STORE: '/home/vcap/truststore.keystore'
+    SERVER_SSL_TRUST_STORE_PASSWORD: '123456'
+    KEYSTORE: ''
+    TRUSTSTORE: ''

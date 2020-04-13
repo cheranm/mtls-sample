@@ -16,11 +16,15 @@
 
 package io.pivotal.mtlssample.server;
 
+import org.apache.catalina.connector.Connector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -39,6 +43,22 @@ public class ServerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);
+    }
+
+    @Bean
+    public ServletWebServerFactory servletContainer(@Autowired HttpServerProperties httpProperties) {
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+        if (httpProperties.getPort() != null) {
+            tomcat.addAdditionalTomcatConnectors(httpConnector(httpProperties.getPort()));
+        }
+
+        return tomcat;
+    }
+
+    private Connector httpConnector(Integer port){
+        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+        connector.setPort(port);
+        return connector;
     }
 
     @RestController
