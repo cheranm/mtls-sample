@@ -2,6 +2,8 @@
 applications:
 - name: mtls-sample-server
   path: target/mtls-sample-server-1.0.0.BUILD-SNAPSHOT.jar
+  #path: build\distributions\mtls-sample-server-boot-0.0.1-SNAPSHOT.zip
+  #path: build\libs\mtls-sample-server-0.0.1-SNAPSHOT.jar
   buildpacks:
   - https://github.com/cloudfoundry/java-buildpack.git
   #- java_buildpack_offline_4_28
