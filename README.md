@@ -49,7 +49,7 @@ Export the unsigned server certificate from server. keystore and create a certif
 $ keytool \
   -certreq \
   -keystore server.keystore \
-  -alias cloud-events-service \
+  -alias mtls-sample-server \
   -file server.unsigned.crt \
   -storepass 123456
 ```
